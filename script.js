@@ -27,12 +27,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const gastosSalvos = localStorage.getItem('gastosDiarios');
         if (gastosSalvos) {
             gastos = JSON.parse(gastosSalvos);
+            console.log('Gastos carregados do localStorage:', gastos);
+        } else {
+            console.log('Nenhum gasto encontrado no localStorage.');
         }
     }
 
     // Salvar Gastos Individuais no LocalStorage
     function salvarGastos() {
         localStorage.setItem('gastosDiarios', JSON.stringify(gastos));
+        console.log('Gastos salvos no localStorage:', gastos);
     }
 
     // Inicializa a página carregando os gastos e atualizando a exibição
@@ -46,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
             botoesCategoria.forEach(btn => btn.classList.remove('selecionado'));
             this.classList.add('selecionado');
             categoriaSelecionada = this.dataset.categoria;
+            console.log('Categoria selecionada:', categoriaSelecionada);
         });
     });
 
@@ -68,14 +73,21 @@ document.addEventListener('DOMContentLoaded', function() {
             valorGastoInput.value = '';
             categoriaSelecionada = '';
             botoesCategoria.forEach(btn => btn.classList.remove('selecionado'));
+            console.log('Gasto adicionado:', novoGasto);
         } else {
             alert('Por favor, insira um valor válido e selecione uma categoria.');
+            console.warn('Tentativa de adicionar gasto inválido: Valor:', valorGasto, 'Categoria:', categoriaSelecionada);
         }
     });
 
     // Função para atualizar a lista de gastos individuais com botões de remover
     function atualizarListaGastos() {
         listaGastosDiv.innerHTML = ''; // Limpa a lista existente
+        if (gastos.length === 0) {
+            listaGastosDiv.textContent = 'Nenhum gasto adicionado ainda.';
+            console.log('Lista de gastos individuais vazia.');
+            return;
+        }
         gastos.forEach((gasto, index) => {
             const gastoItem = document.createElement('div');
             gastoItem.className = 'gasto-item';
@@ -90,19 +102,27 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.btn-remover').forEach(botaoRemover => {
             botaoRemover.addEventListener('click', function() {
                 const idParaRemover = parseInt(this.dataset.id);
+                console.log('Botão Remover clicado para o ID:', idParaRemover);
                 removerGastoIndividual(idParaRemover);
             });
         });
+        console.log('Lista de gastos individuais atualizada.');
     }
 
     // Função para remover um gasto individual pelo ID
     function removerGastoIndividual(id) {
+        console.log('Removendo gasto com ID:', id);
+        const gastosAntes = [...gastos]; // Copia para log
         gastos = gastos.filter(gasto => gasto.id !== id);
+        console.log('Gastos antes da remoção:', gastosAntes);
+        console.log('Gastos depois da remoção:', gastos);
+
         salvarGastos();
         
         atualizarListaGastos();    // Atualiza a lista individual
         atualizarTabelaResumo();   // Atualiza a tabela de resumo
         atualizarTotaisGerais();   // Atualiza os totais gerais
+        console.log('Gasto removido e interface atualizada.');
     }
 
 
@@ -139,8 +159,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td style="text-align: right; background-color: #D9EDC8;">R$ ${saldo.toFixed(2).replace('.', ',')}</td>
                 <td style="text-align: right; background-color: #FEEFB3;">R$ ${jaGastei.toFixed(2).replace('.', ',')}</td>
             `;
-            // Note: O botão de remover agora está na lista de gastos individuais, não na tabela de resumo por categoria
         }
+        console.log('Tabela de resumo atualizada.');
     }
 
     // Função para atualizar os totais gerais (Previsão, Já Gastos, Saldo)
@@ -160,10 +180,12 @@ document.addEventListener('DOMContentLoaded', function() {
         previsaoGastosTotalSpan.textContent = `R$ ${previsaoTotal.toFixed(2).replace('.', ',')}`;
         jaGastosTotalSpan.textContent = `R$ ${jaGastosTotal.toFixed(2).replace('.', ',')}`;
         saldoTotalSpan.textContent = `R$ ${saldoTotal.toFixed(2).replace('.', ',')}`;
+        console.log('Totais gerais atualizados:', { previsaoTotal, jaGastosTotal, saldoTotal });
     }
 
     // --- Função: Exportar para Excel com o modelo da imagem ---
     exportarExcelBtn.addEventListener('click', function() {
+        console.log('Botão Exportar para Excel clicado.');
         const dadosParaPlanilha = [];
 
         // Linha 1: Título "CONTROLE DE GASTOS" (mesclado B1:D1)
@@ -260,9 +282,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const totalHeaderStyle = { font: { bold: true }, fill: { fgColor: { rgb: "FFF0F0F0" } } };
         const totalValueStyle = { font: { bold: true }, numFmt: 'R$ #,##0.00;[Red]-R$ #,##0.00', fill: { fgColor: { rgb: "FFF0F0F0" } } };
 
-        const rowIndexPrevisao = dadosPlanilha.length - 3;
-        const rowIndexJaGastos = dadosPlanilha.length - 2;
-        const rowIndexSaldo = dadosPlanilha.length - 1;
+        const rowIndexPrevisao = dadosParaPlanilha.length - 3;
+        const rowIndexJaGastos = dadosParaPlanilha.length - 2;
+        const rowIndexSaldo = dadosParaPlanilha.length - 1;
 
         if (ws[XLSX.utils.encode_cell({ r: rowIndexPrevisao, c: 0 })]) ws[XLSX.utils.encode_cell({ r: rowIndexPrevisao, c: 0 })].s = totalHeaderStyle;
         if (ws[XLSX.utils.encode_cell({ r: rowIndexPrevisao, c: 2 })]) ws[XLSX.utils.encode_cell({ r: rowIndexPrevisao, c: 2 })].s = totalValueStyle;
