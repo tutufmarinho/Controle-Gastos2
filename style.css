@@ -112,6 +112,35 @@ input[type="number"] {
     background-color: #218838; /* Verde mais escuro no hover */
 }
 
+/* Estilos para a seção de lista de gastos individuais */
+.lista-gastos-individuais {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.lista-gastos-individuais h3 {
+    margin-top: 0;
+    color: #001F3F;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+#listaGastos .gasto-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+#listaGastos .gasto-item:last-child {
+    border-bottom: none;
+}
+
 /* Estilos para a seção da planilha de resumo */
 section.resumo-gastos {
     background: white;
@@ -211,7 +240,7 @@ table td:nth-child(4) { /* Coluna JÁ GASTEI */
     background-color: #218838; /* Verde mais escuro no hover */
 }
 
-/* Estilo para o botão de remover */
+/* Estilo para o botão de remover individual */
 .btn-remover {
     background-color: #DC3545; /* Vermelho para remover */
     color: white;
