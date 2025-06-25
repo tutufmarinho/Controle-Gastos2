@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Controle de Gastos Personalizado</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Controle de Gastos Personalizado</h1>
+    </header>
+
+    <main>
+        <section id="setup-page" class="page">
+            <h2>Configurar Minhas Categorias de Gastos</h2>
+            <div class="setup-input-container">
+                <label for="novaCategoriaNome">Nome da Categoria:</label>
+                <input type="text" id="novaCategoriaNome" placeholder="Ex: Aluguel, Lazer, Educação">
+            </div>
+            <div class="setup-input-container">
+                <label for="novaCategoriaOrcamento">Orçamento Mensal (R$):</label>
+                <input type="number" id="novaCategoriaOrcamento" min="0.00" step="0.01" placeholder="Ex: 1500.00">
+            </div>
+            <button id="addCategoriaBtn">Adicionar Categoria</button>
+
+            <h3>Categorias Configurações:</h3>
+            <table id="tabelaSetupCategorias">
+                <thead>
+                    <tr>
+                        <th>Categoria</th>
+                        <th>Orçamento</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+            <button id="salvarConfigBtn" class="primary-btn">Salvar Configuração e Iniciar</button>
+            <button id="resetConfigBtn" class="danger-btn">Resetar Tudo</button>
+        </section>
+
+        <section id="tracking-page" class="page hidden">
+            <button id="alterarConfigBtn" class="secondary-btn">Alterar Configuração</button>
+
+            <section class="adicionar-gasto">
+                <h2>Adicionar Novo Gasto</h2>
+                <div class="input-container">
+                    <label for="valorGasto">Valor (R$):</label>
+                    <input type="number" id="valorGasto" min="0.01" step="0.01" placeholder="Ex: 50.00">
+                </div>
+                
+                <div class="categorias-container" id="trackingCategoriasContainer">
+                    <p>Selecione a Categoria:</p>
+                    </div>
+                <button id="adicionarBtn">Adicionar Gasto</button>
+            </section>
+
+            <section class="lista-gastos-individuais">
+                <h3>Gastos Adicionados Recentemente:</h3>
+                <div id="listaGastos">
+                    </div>
+            </section>
+
+            <section class="resumo-gastos">
+                <h2>CONTROLE DE GASTOS</h2>
+                <table id="tabelaResumo">
+                    <thead>
+                        <tr>
+                            <th class="item-col">ITEM</th>
+                            <th class="valor-col">VALOR</th>
+                            <th class="saldo-col">SALDO</th>
+                            <th class="ja-gastei-col">JÁ GASTEI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+
+                <div class="resumo-previsao">
+                    <p>PREVISÃO DE GASTOS: <span id="previsaoGastosTotal">R$ 0,00</span></p>
+                    <p>JÁ GASTOS: <span id="jaGastosTotal">R$ 0,00</span></p>
+                    <p>SALDO: <span id="saldoTotal">R$ 0,00</span></p>
+                </div>
+            </section>
+
+            <button id="exportarExcelBtn">Exportar para Excel</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Controle de Gastos. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

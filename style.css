@@ -1,0 +1,307 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F8F8F8;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #001F3F;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+main {
+    flex-grow: 1;
+    padding: 20px;
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    background-color: #001F3F;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: auto;
+}
+
+/* Base styles for page sections */
+.page {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.page.hidden {
+    display: none;
+}
+
+h2, h3 {
+    color: #001F3F;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+/* Input container styles */
+.input-container, .setup-input-container {
+    margin-bottom: 15px;
+}
+
+.input-container label, .setup-input-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"], input[type="number"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* Button styles */
+button {
+    background-color: #004080;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056B3;
+}
+
+.primary-btn {
+    background-color: #28A745;
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.primary-btn:hover {
+    background-color: #218838;
+}
+
+.secondary-btn {
+    background-color: #6C757D;
+    color: white;
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+}
+
+.secondary-btn:hover {
+    background-color: #5A6268;
+}
+
+.danger-btn {
+    background-color: #DC3545;
+    color: white;
+    width: 100%;
+    padding: 10px 15px;
+    margin-top: 10px;
+}
+
+.danger-btn:hover {
+    background-color: #C82333;
+}
+
+.btn-categoria {
+    background-color: #004080;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-categoria:hover {
+    background-color: #0056B3;
+}
+
+.btn-categoria.selecionado {
+    background-color: #007BFF;
+    border: 2px solid #0056B3;
+    font-weight: bold;
+}
+
+/* Category container for tracking page */
+.categorias-container {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Espaço entre os botões */
+    justify-content: center; /* Centraliza os botões */
+}
+
+.categorias-container p {
+    width: 100%; /* Garante que o parágrafo ocupe a largura total */
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+
+/* Table styles (for both setup and summary) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #F0F0F0;
+    font-weight: bold;
+    color: #555;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Specific column widths for summary table */
+.resumo-gastos .item-col { width: 30%; }
+.resumo-gastos .valor-col,
+.resumo-gastos .saldo-col,
+.resumo-gastos .ja-gastei-col {
+    width: 23%;
+    text-align: right;
+}
+
+/* Colors for SALDO and JÁ GASTEI columns */
+.resumo-gastos table td:nth-child(3) {
+    background-color: #D9EDC8;
+}
+.resumo-gastos table td:nth-child(4) {
+    background-color: #FEEFB3;
+}
+
+/* Total summary section */
+.resumo-previsao {
+    padding: 15px;
+    background-color: #F0F0F0;
+    border-top: 1px solid #ccc;
+    border-radius: 0 0 8px 8px;
+    margin: 0 -20px -20px -20px;
+}
+
+.resumo-previsao p {
+    margin: 5px 0;
+    font-size: 1.1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.resumo-previsao p span {
+    font-weight: bold;
+    color: #001F3F;
+}
+
+/* Individual expense list */
+.lista-gastos-individuais {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.lista-gastos-individuais h3 {
+    margin-top: 0;
+    color: #001F3F;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+#listaGastos .gasto-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+#listaGastos .gasto-item:last-child {
+    border-bottom: none;
+}
+
+/* Button for individual removal */
+.btn-remover {
+    background-color: #DC3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-remover:hover {
+    background-color: #C82333;
+}
+
+/* Specific buttons for tracking page */
+#adicionarBtn, #exportarExcelBtn {
+    background-color: #28A745;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#adicionarBtn:hover, #exportarExcelBtn:hover {
+    background-color: #218838;
+}
+
+/* Action buttons in setup table */
+.setup-table-actions button {
+    margin: 0 5px;
+    padding: 5px 8px;
+    font-size: 0.8rem;
+}
+
+/* Small adjust for some buttons not to fill width */
+#addCategoriaBtn, .setup-table-actions button {
+    width: auto;
+}
